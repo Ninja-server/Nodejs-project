@@ -2,10 +2,21 @@ name: nodejs-project.yml
 on: push
 jobs: 
   docker-job: 
-  runs-on: ubuntu-latest
-  steps: 
+   runs-on: ubuntu-latest
+   steps: 
     - name: Git-checkout
       uses: actions/checkout@v4.1.7
     - name: Install Docker packages
       uses: docker-practice/actions-setup-docker@master
+  build: 
+   needs: docker-job
+   runs-on: ubuntu-latest
+   steps: 
+    - name: Git-checkout
+      uses: actions/checkout@v4.1.7
+    - name: Build-image
+      run: | 
+        docker build -t jenkins:v1 .
+        docker tag jenkins:v1 ninjarolex/jenkins:v2
+          
  
