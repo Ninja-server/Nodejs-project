@@ -17,7 +17,6 @@ jobs:
     - name: Build-image
       run: | 
         docker build -t jenkins:v1 .
-        docker tag jenkins:v1 
         docker run -itd --name jenkins-master -p 8081:8080 jenkins:v1
         docker images
         docker ps 
