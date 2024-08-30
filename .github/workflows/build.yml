@@ -2,7 +2,7 @@ name: nodejs-project.yml
 on: push
 jobs: 
   docker-job: 
-  runs-on: ubuntu:latest
+  runs-on: ubuntu-latest
   steps: 
     - name: Git-checkout
       uses: actions/checkout@v4.1.7
