@@ -8,17 +8,4 @@ jobs:
       uses: actions/checkout@v4.1.7
     - name: Install Docker packages
       uses: docker-practice/actions-setup-docker@master
-  image-job: 
-   needs: docker-job
-   runs-on: ubuntu-latest
-   steps:
-    - name: Git-checkout
-      uses: actions/checkout@v4.1.7 
-    - name: Build dockerfile
-      run: | 
-        docker build -t jenkins:v1 .
-        docker tag jenkins:v1 ninjarolex/jenkins:v2
-        docker run -itd --name jenkins-master -p 8081:8080 ninjarolex/jenkins:v2
-        docker ps
-        docker exec -it jenkins-master /bin/bash 
-
+ 
