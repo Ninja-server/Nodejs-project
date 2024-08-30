@@ -5,8 +5,7 @@ jobs:
    runs-on: ubuntu:latest
    steps: 
     - name: Git-checkout
-      uses: actions/checkout@v3.1
-   steps: 
+      uses: actions/checkout@v4.1.7
     - name: Install Docker packages
       uses: docker-practice/actions-setup-docker@master
   image-job: 
@@ -14,8 +13,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
     - name: Git-checkout
-      uses: actions/checkout@v3.1
-   steps: 
+      uses: actions/checkout@v4.1.7 
     - name: Build dockerfile
       run: | 
         docker build -t jenkins:v1 .
