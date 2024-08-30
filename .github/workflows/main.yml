@@ -1,0 +1,8 @@
+name: nodejs-project
+on: push
+jobs: 
+  build: 
+  runs-on: ubuntu-latest
+  steps: 
+   - name: Git-checkout
+     uses: actions/checkout@v4.1.7
