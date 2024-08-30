@@ -18,5 +18,15 @@ jobs:
       run: | 
         docker build -t jenkins:v1 .
         docker tag jenkins:v1 ninjarolex/jenkins:v2
-          
+  deploy: 
+   needs: build
+   runs-on: ubuntu-latest
+   steps: 
+    - name: deploy the jenkins container
+      run: | 
+        docker run -itd --name jenkins-master -p 8081:8080 ninjarolex/jenkins:v2
+        docker exec -it jenkins-master /bin/bash
+        docker images
+        docker ps 
+        docker logs jenkins-master  
  
