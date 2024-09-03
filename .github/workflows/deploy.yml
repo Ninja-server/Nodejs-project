@@ -19,3 +19,4 @@ jobs:
      - name: Build dockerfile into docker images
        run: | 
          docker build -t httpd:v3 . 
+         docker run -itd --name webserver -p 80:80 httpd:v3
