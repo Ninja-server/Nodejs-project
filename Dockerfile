@@ -1,7 +1,8 @@
-FROM ubuntu:18.04
+FROM httpd:2.4
+
 MAINTAINER Ninja
-RUN apt-get update -y && apt-get install default-jre -y
-WORKDIR Jenkins
-ADD https://get.jenkins.io/war-stable/2.462.1/jenkins.war /Jenkins
-CMD ["java","-jar","jenkins.war"]
-EXPOSE 8080
+
+COPY index.html /usr/local/apache2/htdocs/
+
+EXPOSE 80
+
