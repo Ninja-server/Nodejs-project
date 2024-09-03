@@ -1,0 +1,13 @@
+name: nodejs deploy on the docker instance
+on: 
+  push: 
+   branches: 
+     - dev
+jobs: 
+  build: 
+   runs-on: self-hosted
+   steps: 
+     - name: Git-checkout
+       uses: actions/checkout@v4
+     - name: docker-packages
+       uses: docker-practice/actions-setup-docker@master
