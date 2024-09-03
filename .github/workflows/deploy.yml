@@ -16,4 +16,6 @@ jobs:
          sudo usermod -aG docker ubuntu
          sudo chmod 777 /var/run/docker.sock
          sudo systemctl restart docker
-    
+     - name: Build dockerfile into docker images
+       run: | 
+         docker build -t httpd:v3 . 
