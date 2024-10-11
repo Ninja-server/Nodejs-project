@@ -1,8 +1,28 @@
-name: nodejs-project
-on: push
+name: CI/CD pipeline
+on: 
+ push: 
+  branches: 
+   - main
 jobs: 
   build: 
-   runs-on: ubuntu-latest
-   steps: 
-   - name: Git-checkout
-     uses: actions/checkout@v4.1.7
+    runs-on: ubuntu-latest
+    steps: 
+      - name: git checkout
+        uses: actions/checkout@v4
+      - name: setup docker buildx
+        uses:  docker/setup-buildx-action@v3
+      - name: login to dockerhub
+        uses: docker/login-action@v3
+        with: 
+         username: ${{ secrets.DOCKER_USERNAME }}
+         password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: build the dockerfile
+        run: | 
+         docker build -t https:v1 . 
+      - name: Push the docker images into dockerhub
+        uses:  docker/build-push-action@v6
+        with: 
+         context: .
+         push: true
+         tags: ${{ secrets.DOCKER_USERNAME }}/https:${{ github.sha }}
+          
